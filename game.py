@@ -15,10 +15,11 @@ class Direction(Enum):
 Point = namedtuple('Point', 'x, y')
 
 BLOCK_SIZE = 20
-SPEED = 20
+SPEED = 15
 
 WHITE = (255, 255, 255)
 RED = (200, 0, 0)
+RED2 = (150, 0, 0)
 BLUE1 = (0, 0, 255)
 BLUE2 = (0, 100, 255)
 BLACK = (0, 0, 0)
@@ -108,7 +109,10 @@ class SnakeGame:
     def _update_ui(self):
         self.display.fill(BLACK)
 
-        for pt in self.snake:
+        pygame.draw.rect(self.display, BLUE1, pygame.Rect(self.head.x, self.head.y, BLOCK_SIZE, BLOCK_SIZE))
+        pygame.draw.rect(self.display, RED2, pygame.Rect(self.head.x+4, self.head.y+4, 12, 12))
+
+        for pt in self.snake[1:]:
             pygame.draw.rect(self.display, BLUE1, pygame.Rect(pt.x, pt.y, BLOCK_SIZE, BLOCK_SIZE))
             pygame.draw.rect(self.display, BLUE2, pygame.Rect(pt.x+4, pt.y+4, 12, 12))
 
